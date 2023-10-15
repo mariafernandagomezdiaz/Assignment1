@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+
+namespace Group5
+{
+    class Programm
+    {
+
+        public class Apliance
+        {
+            public string Number { get; set; }
+            public string Brand { get; set; }
+            public int Quantity { get; set; }
+            public string Wattage { get; set; }
+            public string Color { get; set; }
+            public double Price { get; set; }
+
+            public Apliance(string number, string brand, int quantity, string wattage, string color, double price)
+            {
+                Number = number;
+                Brand = brand;
+                Quantity = quantity;
+                Wattage = wattage;
+                Color = color;
+                Price = price;
+            }
+        }
+
+        static Random random = new Random();
+
+        static List<Apliance> appliances = new List<Apliance>();
+
+        static Apliance GetRandomApplianceFromList(List<Apliance> appliances)
+        {
+            int randomIndex = random.Next(appliances.Count);
+            return appliances[randomIndex];
+        }
+
+        public class Refrigerator: Apliance
+        {
+            public int NumberDoors { get; set; }
+            public int Height { get; set; }
+            public int Width { get; set; }
+            public Refrigerator(string number, string brand, int quantity, string wattage, string color, double price, int numberDoors, int height, int width): base( number,  brand,  quantity,  wattage,  color,  price)
+            {
+                NumberDoors = numberDoors;
+                Height = height;
+                Width = width;
+            }
+
+            public override string ToString()
+            {
+                return $"ItemNumber: {Number}\nBrand: {Brand}\nQuantity: {Quantity}\nWattage: {Wattage}\nColor: {Color}\nPrice: {Price:C2}\nNumber of Doors: {NumberDoors}\nHeight: {Height} cm\nWidth: {Width} cm";
+            }
+
+            public void FormatForFile(StreamWriter writer)
+            {
+                writer.WriteLine($"{Number};{Brand};{Quantity};{Wattage};{Color};{Price};{NumberDoors};{Height};{Width}");
+            }
+        }
+
+        public class  Vaccum : Apliance
+        {
+            public string Grade { get; set; }
+            public double BatteryVoltage { get; set; }
+            public Vaccum(string number, string brand, int quantity, string wattage, string color, double price, string grade, double batteryVoltage): base(number, brand, quantity, wattage, color, price)
+            {
+                Grade = grade;
+                BatteryVoltage = batteryVoltage;
+
+            }
+
+          public override string ToString()
+            {
+                return $"ItemNumber: {Number}\nBrand: {Brand}\nQuantity: {Quantity}\nWattage: {Wattage}\nColor: {Color}\nPrice: {Price:C2}\nGrade: {Grade}\nBattery Voltage: {BatteryVoltage} V";
+            }
+
+                public void FormatForFile(StreamWriter writer)
+    {
+        writer.WriteLine($"{Number};{Brand};{Quantity};{Wattage};{Color};{Price};{Grade};{BatteryVoltage}");
+    }
+
+        }
+        public class Microwave : Apliance
+        {
+            public string Capacity;
+            public string RoomType;
+            public Microwave(string number, string brand, int quantity, string wattage, string color, double price, string capacity, string roomType) : base(number, brand, quantity, wattage, color, price)
+            {
+                Capacity = capacity;
+                RoomType = roomType;
+            }
+            public override string ToString()
+            {
+                return $"ItemNumber: {Number}\nBrand: {Brand}\nQuantity: {Quantity}\nWattage: {Wattage}\nColor: {Color}\nPrice: {Price:C2}\nCapacity: {Capacity}\nRoom Type: {RoomType}";
+            }
+
+            public void FormatForFile(StreamWriter writer)
+            {
+                writer.WriteLine($"{Number};{Brand};{Quantity};{Wattage};{Color};{Price};{Capacity};{RoomType}");
+            }
+        }
+        public class Dishwasher : Apliance
+        {
+            public string SoundRating { get; set; }
+            public string Feature { get; set; }
+            public Dishwasher(string number, string brand, int quantity, string wattage, string color, double price, string feature, string soundRating ) : base(number, brand, quantity, wattage, color, price)
+            {
+                
+                Feature = feature;
+                SoundRating = soundRating;
+            }
+            public override string ToString()
+            {
+                return $"ItemNumber: {Number}\nBrand: {Brand}\nQuantity: {Quantity}\nWattage: {Wattage}\nColor: {Color}\nPrice: {Price:C2}\nSound Rating: {SoundRating}\nFeature: {Feature}";
+            }
+
+            public void FormatForFile(StreamWriter writer)
+            {
+                writer.WriteLine($"{Number};{Brand};{Quantity};{Wattage};{Color};{Price};{Feature};{SoundRating}");
+            }
+
+        }
+
