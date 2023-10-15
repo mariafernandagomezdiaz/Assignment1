@@ -126,3 +126,125 @@ namespace Group5
 
         }
 
+
+        static void Main(string[] args)
+        {
+            int option;
+            int exit = 0;
+
+            string fileName = "appliances.txt";
+            string[] fileLines = File.ReadAllLines(fileName);
+
+            List<Apliance> appliances = new List<Apliance>();
+            foreach (var line in fileLines)
+            {
+                if (line != "")
+                {
+                    string[] aplianceTxt = line.Split(";");
+
+                   /* Console.WriteLine($"Number: {aplianceTxt[0]}");
+                    Console.WriteLine($"Brand: {aplianceTxt[1]}");
+                    Console.WriteLine($"Quantity: {aplianceTxt[2]}");
+                    Console.WriteLine($"Wattage: {aplianceTxt[3]}");
+                    Console.WriteLine($"Color: {aplianceTxt[4]}");
+                    Console.WriteLine($"Price: {aplianceTxt[5]}");*/
+
+                    string number = aplianceTxt[0];
+                    string brand = aplianceTxt[1];
+                    int quantity = int.Parse(aplianceTxt[2]);
+                    string wattage = aplianceTxt[3];
+                    string color = aplianceTxt[4];
+                    double price = double.Parse(aplianceTxt[5]);
+
+                    char firstDigit = number[0];
+                    //Console.WriteLine(firstDigit);
+                    Apliance appliance = null;
+
+                    int numberDoors;
+                    int height;
+                    int width;
+                    string grade;
+                    double batteryVoltage;
+                    string capacity;
+                    string roomType;
+                    string soundRating;
+                    string feature;
+
+                    switch (firstDigit)
+                    {
+                        case '1':
+                            {
+                                numberDoors = int.Parse(aplianceTxt[6]);
+                                height = int.Parse(aplianceTxt[7]);
+                                width = int.Parse(aplianceTxt[8]);
+                                appliance = new Refrigerator(number, brand, quantity, wattage, color, price,  numberDoors, height, width);
+                                break;
+                            }
+                        case '2':
+                            {
+                                grade = aplianceTxt[6];
+                                batteryVoltage = double.Parse(aplianceTxt[7]);
+                                appliance = new Vaccum(number, brand, quantity, wattage, color, price, grade, batteryVoltage);
+                                break;
+                            }
+                        case '3':
+                            {
+                                capacity = aplianceTxt[6];
+                                roomType = aplianceTxt[7];
+                                appliance = new Microwave(number, brand, quantity, wattage, color, price, capacity, roomType);
+                                break;
+                            }
+                        case '4':
+                        case '5':
+                            {
+
+                                feature = aplianceTxt[6];
+                                soundRating = aplianceTxt[7];
+                                appliance = new Dishwasher(number, brand, quantity, wattage, color, price, feature, soundRating);
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("No is an appliance");
+                                break;
+
+                            }
+                    }
+
+                    if (appliance != null)
+                    {
+                        appliances.Add(appliance);
+                       // Console.WriteLine("Appliance added to the list."); 
+                    }
+                }
+    
+            }
+
+            void Menu()
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Welcome to Modern Appliances!");
+                Console.WriteLine("How may we assist you?");
+                Console.WriteLine("1 – Check out appliance");
+                Console.WriteLine("2 – Find appliances by brand");
+                Console.WriteLine("3 – Display appliances by type");
+                Console.WriteLine("4 – Produce random appliance list");
+                Console.WriteLine("5 – Save & exit");
+                Console.WriteLine("");
+                Console.WriteLine("Enter option:");
+            }
+
+
+            while (exit == 0)
+            {
+                Menu();
+
+                option = int.Parse(Console.ReadLine());
+
+                string number;
+                string brand;
+                string doors;
+                double voltage;
+                string place;
+                string sound;
+                string RandomQuantity;
