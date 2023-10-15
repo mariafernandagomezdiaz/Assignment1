@@ -248,3 +248,220 @@ namespace Group5
                 string place;
                 string sound;
                 string RandomQuantity;
+
+
+                switch (option)
+                {
+                    case 1:
+                        {
+                            Console.WriteLine("Enter the item number of an appliance:");
+                            number = Console.ReadLine();
+
+                            bool applianceFound = false;
+
+                            foreach (Apliance appliance in appliances)
+                            {
+                                if (appliance.Number == number)
+                                {
+                                    applianceFound = true;
+
+                                    if (appliance.Quantity > 0)
+                                    {
+                                        Console.WriteLine($"Appliance {appliance.Number} has been checked out.");
+                                        appliance.Quantity = appliance.Quantity - 1;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("The appliance is not available to be checked out.");
+                                    }
+
+                                    break; 
+                                }
+                            }
+
+                            if (!applianceFound)
+                            {
+                                Console.WriteLine("No appliances found with that item number.");
+                            }
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            Console.WriteLine("Enter brand to search for:");
+                            brand = Console.ReadLine();
+                            Console.WriteLine("Matching Appliances");
+                            //bool applianceFound = false;
+
+                            foreach (Apliance appliance in appliances)
+                            {
+                                if (appliance.Brand == brand)
+                                {
+                                    //applianceFound = true;
+                                    Console.WriteLine(appliance.ToString());
+
+                                    //break;
+                                }
+                                /*else
+                                {
+                                    Console.WriteLine("No appliances found with that brand.");
+                                }*/
+                            }
+
+                           /* if (!applianceFound)
+                            {
+                                Console.WriteLine("No appliances found with that brand.");
+                            }*/
+                            break;
+
+                        }
+                    case 3:
+                        {
+                            int typeApliance;
+                            Console.WriteLine("Appliance Types");
+                            Console.WriteLine("1 – Refrigerators");
+                            Console.WriteLine("2 – Vacuums");
+                            Console.WriteLine("3 – Microwaves");
+                            Console.WriteLine("4 – Dishwashers");
+                            typeApliance = int.Parse(Console.ReadLine());
+
+                            switch (typeApliance)
+                            {
+                                case 1:
+                                    {
+                                        Console.WriteLine("Enter number of doors: 2 (double door), 3 (three doors) or 4 (four doors):");
+                                        doors = Console.ReadLine();
+                                        Console.WriteLine("Matching Appliances");
+
+                                        foreach (Apliance appliance in appliances)
+                                        {
+                                            if (appliance is Refrigerator refrigerator)
+                                            {
+                                                if (doors == "2" && refrigerator.NumberDoors == 2)
+                                                {
+                                                    Console.WriteLine(refrigerator.ToString());
+                                                }
+                                                else if (doors == "3" && refrigerator.NumberDoors == 3)
+                                                {
+                                                    Console.WriteLine(refrigerator.ToString());
+                                                }
+                                                else if (doors == "4" && refrigerator.NumberDoors == 4)
+                                                {
+                                                    Console.WriteLine(refrigerator.ToString());
+                                                }
+                                            }
+                                        }
+
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        Console.WriteLine("Enter battery voltage value. 18 V (low) or 24 V (high)");
+
+                                        voltage = double.Parse(Console.ReadLine());
+
+                                        Console.WriteLine("Matching Appliances");
+
+                                        foreach (Apliance appliance in appliances)
+                                        {
+                                            if (appliance is Vaccum vaccum)
+                                            {
+                                                if (voltage == 18 && vaccum.BatteryVoltage == 18)
+                                                {
+                                                    Console.WriteLine(vaccum.ToString());
+                                                }
+                                                else if (voltage == 24 && vaccum.BatteryVoltage == 24)
+                                                {
+                                                    Console.WriteLine(vaccum.ToString());
+                                                }
+                                            }
+                                        }
+
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        Console.WriteLine("Room where the microwave will be installed: K (kitchen) or W (work site):");
+                                        place = Console.ReadLine();
+
+                                        Console.WriteLine("Matching Appliances");
+
+                                        foreach (Apliance appliance in appliances)
+                                        {
+                                            if (appliance is Microwave microwave)
+                                            {
+                                                if (place == "K" && microwave.RoomType == "K")
+                                                {
+                                                    Console.WriteLine(microwave.ToString());
+                                                }
+                                                else if (place == "W" && microwave.RoomType == "W")
+                                                {
+                                                    Console.WriteLine(microwave.ToString());
+                                                }
+                                            }
+                                        }
+
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        Console.WriteLine("Enter the sound rating of the dishwasher: Qt(Quietest), Qr(Quieter), Qu(Quiet) or M(Moderate):");
+                                        sound = Console.ReadLine();
+                                        Console.WriteLine("Matching Appliances");
+
+
+                                        foreach (Apliance appliance in appliances)
+                                        {
+                                            if (appliance is Dishwasher dishwasher)
+                                            {
+                                                if (sound == "Qt" && dishwasher.SoundRating == "Qt")
+                                                {
+                                                    Console.WriteLine(dishwasher.ToString());
+                                                }
+                                                else if (sound == "Qr" && dishwasher.SoundRating == "Qr")
+                                                {
+                                                    Console.WriteLine(dishwasher.ToString());
+                                                }
+                                                else if (sound == "Qu" && dishwasher.SoundRating == "Qu")
+                                                {
+                                                    Console.WriteLine(dishwasher.ToString());
+                                                }
+                                                else if (sound == "M" && dishwasher.SoundRating == "M")
+                                                {
+                                                    Console.WriteLine(dishwasher.ToString());
+                                                }
+                                            }
+                                        }
+
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("This is not an option");
+                                        break;
+                                    }
+                            }
+                            break;
+                        }
+                    case 4:
+                        {
+                            Console.WriteLine("Enter the number of appliances:");
+                            string randomQuantity = Console.ReadLine();
+                            int quantity;
+
+                            if (int.TryParse(randomQuantity, out quantity) && quantity > 0)
+                            {
+                                Console.WriteLine("Random Appliances:");
+
+                                for (int i = 0; i < quantity; i++)
+                                {
+                                    Apliance randomAppliance = GetRandomApplianceFromList(appliances);
+                                    Console.WriteLine($"{randomAppliance}\n");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please enter a valid, positive number.");
+                            }
+                            break;                           
+                        }
