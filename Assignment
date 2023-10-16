@@ -465,3 +465,54 @@ namespace Group5
                             }
                             break;                           
                         }
+                        case 5:
+                        {
+                            Console.WriteLine("Bye!!!");
+                            exit = 1;
+
+
+
+                            using (StreamWriter writer = new StreamWriter("appliances.txt"))
+                            {
+                                foreach (Apliance appliance in appliances)
+                                {
+                                    if (appliance is Refrigerator refrigerator)
+                                    {
+                                        refrigerator.FormatForFile(writer);
+                                    }
+                                    else if (appliance is Vaccum vacuum)
+                                    {
+                                        vacuum.FormatForFile(writer);
+                                    }
+                                    else if (appliance is Microwave microwave)
+                                    {
+                                        microwave.FormatForFile(writer);
+                                    }
+                                    else if(appliance is Dishwasher dishwasher)
+                                    {
+                                        dishwasher.FormatForFile(writer);
+                                    }
+                                }
+                            }
+
+
+
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("This is not an option");
+                            break;
+                        }
+                }
+
+
+            }
+
+            
+            
+        }
+
+    }
+}
+
